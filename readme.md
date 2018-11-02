@@ -1,4 +1,4 @@
-# query-string [![Build Status](https://travis-ci.org/mobisysgmbh/query-string.svg?branch=master)](https://travis-ci.org/mobisysgmbh/query-string)
+# query-string [![Build Status](https://travis-ci.org/MobisysGmbH/query-string.svg?branch=master)](https://travis-ci.org/MobisysGmbH/query-string)
 
 > Parse and stringify URL [query strings](https://en.wikipedia.org/wiki/Query_string)
 
