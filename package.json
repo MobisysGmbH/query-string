@@ -3,21 +3,17 @@
 	"version": "6.2.0",
 	"description": "Parse and stringify URL query strings",
 	"license": "MIT",
-	"repository": "sindresorhus/query-string",
+	"repository": "mobisysgmbh/query-string",
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "sindresorhus.com"
-	},
-	"engines": {
-		"node": ">=6"
+		"name": "Sefa Ilkimen",
+		"email": "sefa.ilkimen@mobisys.de",
+		"url": "ilkimen.net"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"build": "tsc",
+		"test": "npm run build && ava"
 	},
-	"files": [
-		"index.js"
-	],
+	"main": "lib/query-string.js",
 	"keywords": [
 		"browser",
 		"querystring",
@@ -34,13 +30,12 @@
 		"searchparams"
 	],
 	"dependencies": {
-		"decode-uri-component": "^0.2.0",
-		"strict-uri-encode": "^2.0.0"
+		"decode-uri-component": "^0.2.0"
 	},
 	"devDependencies": {
 		"ava": "^0.25.0",
 		"deep-equal": "^1.0.1",
 		"fast-check": "^1.5.0",
-		"xo": "^0.23.0"
+		"typescript": "3.1.6"
 	}
 }
