@@ -29,9 +29,6 @@
 		"decode",
 		"searchparams"
 	],
-	"dependencies": {
-		"decode-uri-component": "^0.2.0"
-	},
 	"devDependencies": {
 		"ava": "^0.25.0",
 		"deep-equal": "^1.0.1",

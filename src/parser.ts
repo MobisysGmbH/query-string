@@ -4,7 +4,7 @@ import { ParseOptions } from './query-string';
 
 interface PreparsedValue {
 	key: string;
-	value: string;
+	value: string | null;
 }
 
 interface ParsedMap {
@@ -80,12 +80,12 @@ export function parse(input: string, options?: ParseOptions) {
 	const parsed = input
 		.split('&')
 		.map(param => {
-      let [key, value] = param.replace(/\+/g, ' ').split('=');
+      const [key, value] = param.replace(/\+/g, ' ').split('=');
 
-			value = value === undefined ? null : decode(value, mergedOptions);
-			key = decode(key, mergedOptions);
-
-			return { key, value };
+      return {
+        key: decode(key, mergedOptions),
+        value: value === undefined ? null : decode(value, mergedOptions)
+      };
 		})
 		.reduce(
 			getParserForArrayFormat(mergedOptions),
