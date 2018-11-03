@@ -3,8 +3,8 @@ import { mergeOptions } from './util';
 import { ParseOptions } from './query-string';
 
 interface PreparsedValue {
-	key: string;
-	value: string | null;
+  key: string;
+  value: string | null;
 }
 
 interface ParsedMap {
@@ -12,84 +12,84 @@ interface ParsedMap {
 }
 
 function getParserForArrayFormat(options: ParseOptions) {
-	switch (options.arrayFormat) {
-		case 'index':
-			return (accumulator: ParsedMap, { key, value }: PreparsedValue) => {
-				const match = /\[(\d*)\]$/.exec(key);
+  switch (options.arrayFormat) {
+    case 'index':
+      return (accumulator: ParsedMap, { key, value }: PreparsedValue) => {
+        const match = /\[(\d*)\]$/.exec(key);
 
-				key = key.replace(/\[\d*\]$/, '');
+        key = key.replace(/\[\d*\]$/, '');
 
-				if (match === null) {
-					accumulator[key] = value;
+        if (match === null) {
+          accumulator[key] = value;
 
-					return accumulator;
-				}
+          return accumulator;
+        }
 
-				if (accumulator[key] === undefined) {
-					accumulator[key] = Object.create(null);
-				}
+        if (accumulator[key] === undefined) {
+          accumulator[key] = Object.create(null);
+        }
 
-				(accumulator[key] as Object)[match[1]] = value;
+        (accumulator[key] as Object)[match[1]] = value;
 
-				return accumulator;
-			};
-		case 'bracket':
-			return (accumulator: ParsedMap, { key, value }: PreparsedValue) => {
-				const match = /(\[\])$/.exec(key);
-				key = key.replace(/\[\]$/, '');
+        return accumulator;
+      };
+    case 'bracket':
+      return (accumulator: ParsedMap, { key, value }: PreparsedValue) => {
+        const match = /(\[\])$/.exec(key);
+        key = key.replace(/\[\]$/, '');
 
-				if (match === null) {
-					accumulator[key] = value;
-				} else if (accumulator[key] === undefined) {
-					accumulator[key] = [value];
-				} else {
-					accumulator[key] = Array.prototype.concat([], accumulator[key], value);
-				}
-
-				return accumulator;
-			};
-		default:
-			return (accumulator: ParsedMap, { key, value }: PreparsedValue) => {
-				if (accumulator[key] === undefined) {
-					accumulator[key] = value;
-				} else {
+        if (match === null) {
+          accumulator[key] = value;
+        } else if (accumulator[key] === undefined) {
+          accumulator[key] = [value];
+        } else {
           accumulator[key] = Array.prototype.concat([], accumulator[key], value);
-				}
+        }
 
-				return accumulator;
-			};
-	}
+        return accumulator;
+      };
+    default:
+      return (accumulator: ParsedMap, { key, value }: PreparsedValue) => {
+        if (accumulator[key] === undefined) {
+          accumulator[key] = value;
+        } else {
+          accumulator[key] = Array.prototype.concat([], accumulator[key], value);
+        }
+
+        return accumulator;
+      };
+  }
 }
 
 export function parse(input: string, options?: ParseOptions) {
-	const mergedOptions = mergeOptions({
-		decode: true,
-		arrayFormat: 'none'
-	}, options) as ParseOptions;
+  const mergedOptions = mergeOptions({
+    decode: true,
+    arrayFormat: 'none'
+  }, options) as ParseOptions;
 
-	if (typeof input !== 'string') {
-		return Object.create(null);
-	}
+  if (typeof input !== 'string') {
+    return Object.create(null);
+  }
 
-	input = input.trim().replace(/^[?#&]/, '');
+  input = input.trim().replace(/^[?#&]/, '');
 
-	if (input.length === 0) {
-		return Object.create(null);
-	}
+  if (input.length === 0) {
+    return Object.create(null);
+  }
 
-	const parsed = input
-		.split('&')
-		.map(param => {
+  const parsed = input
+    .split('&')
+    .map(param => {
       const [key, value] = param.replace(/\+/g, ' ').split('=');
 
       return {
         key: decode(key, mergedOptions),
         value: value === undefined ? null : decode(value, mergedOptions)
       };
-		})
-		.reduce(
-			getParserForArrayFormat(mergedOptions),
-			Object.create(null)
+    })
+    .reduce(
+      getParserForArrayFormat(mergedOptions),
+      Object.create(null)
     );
 
   return Object.keys(parsed)
@@ -113,26 +113,26 @@ export function parse(input: string, options?: ParseOptions) {
 }
 
 export function extract(input: string) {
-	const queryStart = input.indexOf('?');
+  const queryStart = input.indexOf('?');
 
-	if (queryStart === -1) {
-		return '';
-	}
+  if (queryStart === -1) {
+    return '';
+  }
 
-	return input.slice(queryStart + 1);
+  return input.slice(queryStart + 1);
 }
 
 export function parseUrl(input: string, options: ParseOptions) {
-	const hashIndex = input.indexOf('#');
+  const hashIndex = input.indexOf('#');
 
-	if (hashIndex > -1) {
-		input = input.slice(0, hashIndex);
-	}
+  if (hashIndex > -1) {
+    input = input.slice(0, hashIndex);
+  }
 
-	return {
-		url: input.split('?')[0] || '',
-		query: parse(extract(input), options)
-	}
+  return {
+    url: input.split('?')[0] || '',
+    query: parse(extract(input), options)
+  }
 }
 
 export default { extract, parse, parseUrl }

@@ -6,15 +6,15 @@ export type CompareFn = (a: string, b: string) => number;
 export type ArrayFormat = 'none' | 'bracket' | 'index';
 
 export interface ParseOptions {
-	decode?: boolean
-	arrayFormat?: ArrayFormat
+  decode?: boolean
+  arrayFormat?: ArrayFormat
 }
 
 export interface StringifyOptions {
-	encode?: boolean;
-	strict?: boolean;
-	arrayFormat?: ArrayFormat;
-	sort?: boolean | CompareFn;
+  encode?: boolean;
+  strict?: boolean;
+  arrayFormat?: ArrayFormat;
+  sort?: boolean | CompareFn;
 }
 
 export const { extract, parse, parseUrl } = parser;

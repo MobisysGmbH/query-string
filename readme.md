@@ -144,7 +144,7 @@ Supports both `Function` as a custom sorting function or `false` to disable sort
 ```js
 const order = ['c', 'a', 'b'];
 queryString.stringify({ a: 1, b: 2, c: 3}, {
-	sort: (m, n) => order.indexOf(m) >= order.indexOf(n)
+  sort: (m, n) => order.indexOf(m) >= order.indexOf(n)
 });
 // => 'c=3&a=1&b=2'
 ```
@@ -182,10 +182,10 @@ You're much better off just converting the object to a JSON string:
 
 ```js
 queryString.stringify({
-	foo: 'bar',
-	nested: JSON.stringify({
-		unicorn: 'cake'
-	})
+  foo: 'bar',
+  nested: JSON.stringify({
+    unicorn: 'cake'
+  })
 });
 //=> 'foo=bar&nested=%7B%22unicorn%22%3A%22cake%22%7D'
 ```
