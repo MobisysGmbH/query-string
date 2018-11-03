@@ -17,4 +17,7 @@ export interface StringifyOptions {
 	sort?: boolean | CompareFn;
 }
 
+export const { extract, parse, parseUrl } = parser;
+export const { stringify } = stringifier;
+
 export default { ...parser, ...stringifier }
