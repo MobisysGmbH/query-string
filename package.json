@@ -1,6 +1,6 @@
 {
   "name": "@mobisys/query-string",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "description": "Parse and stringify URL query strings",
   "license": "MIT",
   "repository": "mobisysgmbh/query-string",
