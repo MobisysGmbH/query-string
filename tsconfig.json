@@ -4,9 +4,10 @@
     "target": "es5",
     "moduleResolution": "node",
     "downlevelIteration": true,
-    "outDir": "./lib",
     "rootDir": "./src",
+    "outDir": "./lib",
     "sourceMap": true,
+    "declaration": true,
     "baseUrl": ".",
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
@@ -21,5 +22,8 @@
     "lib": [
       "es5"
     ]
-  }
+  },
+  "include": [
+    "./src/**/*"
+  ]
 }

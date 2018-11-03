@@ -2,14 +2,15 @@
 
 > Parse and stringify URL [query strings](https://en.wikipedia.org/wiki/Query_string)
 
+This is a fork of [Sindre Sorhus' query string parser & stringifier](https://github.com/sindresorhus/query-string) with zero runtime dependencies.
+Includes CommonJS Module (`lib`), ES Module (`lib-esm`) and UMD bundles (`bundle`).
+
 
 ## Install
 
 ```
-$ npm install query-string
+$ npm install @mobisys/query-string
 ```
-
-This module targets Node.js 6 or later and the latest version of Chrome, Firefox, and Safari. If you want support for older browsers, or, [if your project is using create-react-app v1](https://github.com/sindresorhus/query-string/pull/148#issuecomment-399656020), use version 5: `npm install query-string@5`.
 
 
 ## Usage
@@ -96,8 +97,8 @@ Stringify an object into a query string, sorting the keys.
 Type: `boolean`<br>
 Default: `true`
 
-Strictly encode URI components with [strict-uri-encode](https://github.com/kevva/strict-uri-encode). It uses [encodeURIComponent](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)
-if set to false. You probably [don't care](https://github.com/sindresorhus/query-string/issues/42) about this option.
+Strictly encode URI components adhering to [RFC 3986](http://tools.ietf.org/html/rfc3986).
+It uses [encodeURIComponent](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) if set to false.
 
 #### encode
 

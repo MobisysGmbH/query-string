@@ -1,3 +1,5 @@
 node_modules
+bundle
 lib
+lib-esm
 yarn.lock
