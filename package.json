@@ -16,6 +16,7 @@
     "build-bundle": "webpack",
     "build": "npm run clean && npm run build-cjs && npm run build-esm && npm run build-bundle",
     "test": "npm run build && ava",
+    "travis": "npm run clean && npm run build-cjs && npm run build-esm && ava",
     "prepublishOnly": "npm run test"
   },
   "main": "lib/query-string.js",
