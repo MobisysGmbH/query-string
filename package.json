@@ -15,7 +15,8 @@
 		"build-esm": "tsc -m es6 --outDir lib-esm",
 		"build-bundle": "webpack",
 		"build": "npm run clean && npm run build-cjs && npm run build-esm && npm run build-bundle",
-		"test": "npm run build && ava"
+    "test": "npm run build && ava",
+    "prepublishOnly": "npm run test"
 	},
   "main": "lib/query-string.js",
   "files": [
