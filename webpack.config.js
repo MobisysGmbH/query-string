@@ -31,6 +31,7 @@ module.exports = {
     filename: '[name].js',
     libraryTarget: 'umd',
     library: 'QueryString',
-    umdNamedDefine: true
+    umdNamedDefine: false,
+    globalObject: `typeof self !== 'undefined' ? self : this`
   }
 }
